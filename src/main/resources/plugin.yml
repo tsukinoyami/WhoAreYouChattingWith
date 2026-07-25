@@ -1,0 +1,7 @@
+name: WhoAreYouChattingWith
+version: '${version}'
+
+main: me.facu.Main
+api-version: '26.2'
+load: POSTWORLD
+softdepend: [SkinsRestorer]
