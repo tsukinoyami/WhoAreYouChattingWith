@@ -1,5 +1,8 @@
 package me.facu;
 
+// opcion para poner sprites de items cuando se unan
+// añadir /msg
+
 import io.papermc.paper.event.player.AsyncChatEvent;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
@@ -11,6 +14,7 @@ import net.skinsrestorer.api.property.SkinIdentifier;
 import net.skinsrestorer.api.property.SkinProperty;
 import net.skinsrestorer.api.storage.PlayerStorage;
 import org.bukkit.Bukkit;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -25,13 +29,13 @@ public class ChatAsync implements Listener {
 
     @EventHandler
     public void onMessage(AsyncChatEvent e) {
-        SkinsRestorerProvider.get();
+
         Player player = e.getPlayer();
         String text = PlainTextComponentSerializer.plainText().serialize(e.message());
 
         String target = getHeadTarget(player);
 
-        String chatForm = "<head:" + target + ":true> " +
+        String chatForm = "<!shadow><head:" + target + ":true></!shadow> " +
                 "<white><" + player.getName() + "> " +
                 text;
 
