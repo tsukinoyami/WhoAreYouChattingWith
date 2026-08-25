@@ -1,7 +1,7 @@
 name: WhoAreYouChattingWith
 version: '${version}'
 
-main: me.facu.Main
+main: me.facu.WhoAreYouChattingWith
 api-version: '26.2'
 load: POSTWORLD
 softdepend: [SkinsRestorer]
