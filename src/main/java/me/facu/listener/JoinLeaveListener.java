@@ -23,11 +23,15 @@ public class JoinLeaveListener implements Listener {
         Player player = e.getPlayer();
         String target = skinsManager.getHeadTarget(player);
 
+        /*
+
+        on next update lol
+
         if (!Bukkit.getOnlineMode()) {
             Component tabName = mm.deserialize("<head:" + target + ":true><white>" + player.getName() + "</white>");
             player.playerListName(tabName);
         }
-
+        */
         Component originalMessage = e.joinMessage();
         if (originalMessage != null) {
             Component headComponent = mm.deserialize("<white><head:" + target + ":true></white><yellow> ");
