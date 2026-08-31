@@ -8,8 +8,12 @@ import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 public class WhoAreYouChattingWith extends JavaPlugin {
+
+    private static WhoAreYouChattingWith thisPlugin;
+
     @Override
     public void onEnable() {
+        thisPlugin = this;
         saveDefaultConfig();
         SkinsManager skinsManager = new SkinsManager();
 
@@ -24,6 +28,7 @@ public class WhoAreYouChattingWith extends JavaPlugin {
     public void onDisable() {
         getLogger().info("WAYCW Disabled!");
     }
+
 
     private void enviarBannerConsola() {
         MiniMessage mm = MiniMessage.miniMessage();
@@ -41,6 +46,10 @@ public class WhoAreYouChattingWith extends JavaPlugin {
         for (String linea : banner) {
             Bukkit.getConsoleSender().sendMessage(mm.deserialize(linea));
         }
+    }
+
+    public static WhoAreYouChattingWith returnSelf(){
+        return thisPlugin;
     }
 }
 

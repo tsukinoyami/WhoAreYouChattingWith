@@ -5,8 +5,3 @@ chat-heads: true
 
 # Show heads from players when they join/leave
 join-leave-heads: true
-
-# Show heads from players in tablist when offline
-# !! High incompatibility with other tablist mods !!
-# Recommended if you don't use other tablist modifier mods.
-tablist-heads-in-offline: false

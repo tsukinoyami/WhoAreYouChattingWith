@@ -8,10 +8,12 @@ package me.facu.listener;
 
 */
 import io.papermc.paper.event.player.AsyncChatEvent;
+import me.facu.WhoAreYouChattingWith;
 import me.facu.util.SkinsManager;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -24,19 +26,23 @@ public class ChatListener implements Listener {
         this.skinsManager = skinsManager;
     }
 
+    boolean chatHeads = WhoAreYouChattingWith.returnSelf().getConfig().getBoolean("chat-heads");
+
     @EventHandler
     public void onChat(AsyncChatEvent e) {
         Player player = e.getPlayer();
-        String text = PlainTextComponentSerializer.plainText().serialize(e.message());
 
-        String target = skinsManager.getHeadTarget(player);
+        if (chatHeads) {
+            String target = skinsManager.getHeadTarget(player);
+            String text = PlainTextComponentSerializer.plainText().serialize(e.message());
+            String chatForm = "<head:" + target + ":true> " +
+                    "<white><" + player.getName() + "> " +
+                    text;
 
-        String chatForm = "<head:" + target + ":true> " +
-                "<white><" + player.getName() + "> " +
-                text;
+            Component mensajeFinal = mm.deserialize(chatForm);
+            e.renderer((source, sourceDisplayName, message, viewer) -> mensajeFinal);
+        }
 
-        Component mensajeFinal = mm.deserialize(chatForm);
-        e.renderer((source, sourceDisplayName, message, viewer) -> mensajeFinal);
     }
 
 
